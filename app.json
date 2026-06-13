@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "BackSeat",
+    "slug": "backseat",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "backseat",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": false,
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#f8f9ff"
+    },
+    "android": {
+      "package": "com.backseat.app",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "ACTIVITY_RECOGNITION",
+        "BLUETOOTH_CONNECT",
+        "POST_NOTIFICATIONS",
+        "USE_FULL_SCREEN_INTENT",
+        "FOREGROUND_SERVICE",
+        "FOREGROUND_SERVICE_LOCATION",
+        "FOREGROUND_SERVICE_SPECIAL_USE",
+        "RECEIVE_BOOT_COMPLETED",
+        "REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-location",
+        {
+          "isAndroidBackgroundLocationEnabled": true,
+          "locationAlwaysAndWhenInUsePermission": "BackSeat watches for the end of your drive so it can remind you to check the back seat. It needs background location to do this while your phone is in your pocket."
+        }
+      ],
+      "./plugins/withBackseatDetection",
+      "./plugins/withNotifeeAlarm"
+    ],
+    "extra": {
+      "router": { "origin": false }
+    }
+  }
+}
