@@ -21,7 +21,10 @@ useExpoPublishing()
 android {
   namespace = "com.backseat.detection"
   defaultConfig {
-    minSdkVersion 24
+    // Match the host app's minSdk (Expo SDK 51 default is 23) so the library
+    // manifest doesn't fail the merge by demanding a higher floor. Both the
+    // Activity Recognition and Bluetooth APIs used here are available on 23.
+    minSdkVersion safeExtGet("minSdkVersion", 24)
   }
   // Pull compileSdk/targetSdk from the host app's gradle properties so this
   // module always matches the prebuilt project (avoids version drift).

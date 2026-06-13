@@ -24,7 +24,12 @@
         "FOREGROUND_SERVICE_LOCATION",
         "FOREGROUND_SERVICE_SPECIAL_USE",
         "RECEIVE_BOOT_COMPLETED",
-        "REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"
+        "REQUEST_IGNORE_BATTERY_OPTIMIZATIONS",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_BACKGROUND_LOCATION",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_LOCATION"
       ]
     },
     "plugins": [
@@ -40,7 +45,12 @@
       "./plugins/withNotifeeAlarm"
     ],
     "extra": {
-      "router": { "origin": false }
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "63572037-9965-4aa4-a6e2-5881f851e29c"
+      }
     }
   }
 }

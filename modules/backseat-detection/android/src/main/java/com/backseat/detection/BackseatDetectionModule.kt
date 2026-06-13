@@ -100,7 +100,7 @@ class BackseatDetectionModule : Module() {
   // -----------------------------------------------------------------------
 
   private fun startActivityUpdates() {
-    val transitions = buildList {
+    val transitions = buildList<ActivityTransition> {
       // We register both ENTER and EXIT for the three activities we care about.
       for (type in listOf(
         DetectedActivity.IN_VEHICLE,
@@ -112,7 +112,7 @@ class BackseatDetectionModule : Module() {
         add(
           ActivityTransition.Builder()
             .setActivityType(type)
-            .setActivityTransitionType(ActivityTransition.ACTIVITY_TRANSITION_ENTER)
+            .setActivityTransition(ActivityTransition.ACTIVITY_TRANSITION_ENTER)
             .build()
         )
       }
