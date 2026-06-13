@@ -1,0 +1,47 @@
+// Gradle build for the BackseatDetection local Expo module.
+//
+// SAFETY-OF-LIFE NOTE: This module wires the two native trip-end primitives
+// (Google Activity Recognition transitions + Bluetooth ACL disconnect). It is
+// UNVERIFIED until built with `expo prebuild` and run on a physical device —
+// it cannot run in Expo Go or on the emulator (no real automotive transition,
+// no paired car Bluetooth). See ../../native/README.md.
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+group = 'com.backseat.detection'
+version = '0.1.0'
+
+def expoModulesCorePlugin = new File(project(":expo-modules-core").projectDir.absolutePath, "ExpoModulesCorePlugin.gradle")
+apply from: expoModulesCorePlugin
+applyKotlinExpoModulesCorePlugin()
+useCoreDependencies()
+useExpoPublishing()
+
+android {
+  namespace = "com.backseat.detection"
+  defaultConfig {
+    // Match the host app's minSdk (Expo SDK 51 default is 23) so the library
+    // manifest doesn't fail the merge by demanding a higher floor. Both the
+    // Activity Recognition and Bluetooth APIs used here are available on 23.
+    minSdkVersion safeExtGet("minSdkVersion", 24)
+  }
+  // Pull compileSdk/targetSdk from the host app's gradle properties so this
+  // module always matches the prebuilt project (avoids version drift).
+  compileSdkVersion safeExtGet("compileSdkVersion", 34)
+
+  lintOptions {
+    abortOnError false
+  }
+}
+
+// Resolves a gradle property from the host app if present, else a default.
+def safeExtGet(prop, fallback) {
+  rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
+dependencies {
+  // Google Play Services Location ships the ActivityRecognitionClient and the
+  // ActivityTransition* APIs used for the canonical IN_VEHICLE -> ON_FOOT signal.
+  implementation "com.google.android.gms:play-services-location:21.3.0"
+}

@@ -1,0 +1,47 @@
+{
+  "cli": {
+    "version": ">= 12.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleDebug"
+      },
+      "env": {
+        "EXPO_PUBLIC_CONVEX_URL": "https://effervescent-rabbit-158.convex.cloud",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_YXB0LWtpd2ktNDUuY2xlcmsuYWNjb3VudHMuZGV2JA"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_CONVEX_URL": "https://effervescent-rabbit-158.convex.cloud",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_YXB0LWtpd2ktNDUuY2xlcmsuYWNjb3VudHMuZGV2JA"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "env": {
+        "EXPO_PUBLIC_CONVEX_URL": "https://effervescent-rabbit-158.convex.cloud",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_YXB0LWtpd2ktNDUuY2xlcmsuYWNjb3VudHMuZGV2JA"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "android": {
+        "track": "internal"
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+node_modules/
+.expo/
+dist/
+.env.local
+*.log
+_design/
+
+# IDE
+.idea/
+
+# Native build artifacts
+**/android/build/
+**/android/.cxx/
+android/app/build/
+android/.gradle/
+android/local.properties
